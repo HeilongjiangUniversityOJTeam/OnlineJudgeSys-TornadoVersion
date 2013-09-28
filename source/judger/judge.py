@@ -102,7 +102,7 @@ def Judge(request_info):
         runcfg = {
             'args': [temp_dir + exe_file],
             'timelimit': request_info['time_limit'] * 1000,
-            'memorylimit': request_info['memory_limit']
+            'memorylimit': request_info['memory_limit'] * 1024
         }
         rst = RunOne(runcfg, infile, outfile, tempfile)
 
