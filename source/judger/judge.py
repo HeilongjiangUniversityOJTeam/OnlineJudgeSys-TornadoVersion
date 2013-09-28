@@ -1,16 +1,18 @@
+# -*- coding:utf-8 -*-
 import lorun
 import os
 import subprocess
+from configure import COMPILER_DIR, DATA_DIR, SOURCE_CODE_DIR
 
 compile_cmd = {
-    "gcc"   : "gcc ./SourceCode/%s -o ./Temp/%s -ansi -fno-asm -O2 -Wall -lm --static -DONLINE_JUDGE",
-    "g++"   : "g++ ./SourceCode/%s -o ./Temp/%s -ansi -fno-asm -O2 -Wall -lm --static -DONLINE_JUDGE",
-    "java"  : "javac Main.java",
-    "ruby"  : "ruby -c main.rb",
-    "perl"  : "perl -c main.pl",
+    "gcc": "gcc " + SOURCE_CODE_DIR + "/%s -o " + COMPILER_DIR + "/%s -ansi -fno-asm -O2 -Wall -lm --static -DONLINE_JUDGE",
+    "g++": "g++ " + SOURCE_CODE_DIR + "/%s -o " + COMPILER_DIR + "/%s -ansi -fno-asm -O2 -Wall -lm --static -DONLINE_JUDGE",
+    "java": "javac Main.java",
+    "ruby": "ruby -c main.rb",
+    "perl": "perl -c main.pl",
     "pascal": 'fpc main.pas -O2 -Co -Ct -Ci',
-    "go"    : '/opt/golang/bin/go build -ldflags "-s -w"  main.go',
-    "lua"   : 'luac -o main main.lua',
+    "go": '/opt/golang/bin/go build -ldflags "-s -w"  main.go',
+    "lua": 'luac -o main main.lua',
     "python2": 'python2 -m py_compile main.py',
     "python3": 'python3 -m py_compile main.py',
 }
@@ -27,16 +29,18 @@ RESULT_STR = [
     'System Error'
 ]
 
+
 def Compile(id, file_name, language_name):
     executable_name = "%d.x" % id
     cmd = compile_cmd[language_name] % (file_name, executable_name)
 
     p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    out, err= p.communicate()
+    out, err = p.communicate()
 
     if not p.returncode:
         return (True, executable_name)
-    return (False, err+out)
+    return (False, err + out)
+
 
 def RunOne(runcfg, in_path, out_path, temp_path):
     fin = file(in_path)
@@ -57,12 +61,17 @@ def RunOne(runcfg, in_path, out_path, temp_path):
         ftemp.close()
         os.remove(temp_path)
         if crst != 0:
-            return {'result':crst}
+            return {'result': crst}
 
     return rst
 
+
 def Judge(request_info):
+    '''
+    判题接口
+    '''
     res = Compile(request_info['_id'], request_info['source_file_name'], request_info['language_type'])
+    print 'no problem place'
     if not res[0]:
         result = {
             '_id': request_info['_id'],
@@ -76,8 +85,8 @@ def Judge(request_info):
     exe_file = res[-1]
     files = request_info['data_files']
 
-    data_dir = "./DataFile/%s/" % str(request_info['problem_id'])
-    temp_dir = "./Temp/"
+    data_dir = DATA_DIR + "/%s/" % str(request_info['problem_id'])
+    temp_dir = COMPILER_DIR + "/"
     tempfile = temp_dir + 'temp.out'
     record = {
         '_id': request_info['_id'],
@@ -91,9 +100,9 @@ def Judge(request_info):
         infile = data_path + '.in'
         outfile = data_path + '.out'
         runcfg = {
-            'args':[temp_dir + exe_file],
-            'timelimit':request_info['time_limit']*1000,
-            'memorylimit':request_info['memory_limit']
+            'args': [temp_dir + exe_file],
+            'timelimit': request_info['time_limit'] * 1000,
+            'memorylimit': request_info['memory_limit']
         }
         rst = RunOne(runcfg, infile, outfile, tempfile)
 

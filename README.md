@@ -1,7 +1,7 @@
 OnlineJudgeSys (Tornado Version)
 ====
-
-Online Judge System powered by Tornado
+运行根目录下gaea.py jserver.py
+judger目录下main.py
 -----
         * 开发环境
             Ubuntu 12.04 & 13.04
@@ -19,7 +19,11 @@ Online Judge System powered by Tornado
             pip pymongo
             git Lo-runner python install
 
-
+09.28 icefish
+-----
+        * 项目添加log功能,log记录在log目录下judge.log中
+        * 代码结构调整,对实现重要函数接口添加注释
+        * 因为中文注释的需要,对已经添加注释的文件添加文件编码预处理
 
 07.01 icefish
 -----

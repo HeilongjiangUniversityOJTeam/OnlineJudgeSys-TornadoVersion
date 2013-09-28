@@ -1,6 +1,9 @@
-judge_server_host = 'localhost'
-judge_server_port = 4321
+JUDGE_SERVER_HOST = 'localhost'
+JUDGE_SERVER_PORT = 4321
 
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
 
-redis_host = 'localhost'
-redis_port = 6379
+SOURCE_CODE_DIR = './SourceCode'
+COMPILER_DIR = './Temp'
+DATA_DIR = './DataFile'
