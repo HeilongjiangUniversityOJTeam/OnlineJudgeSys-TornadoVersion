@@ -27,8 +27,7 @@ def InitLocalData(data_file_status):
     dir = './DataFile/'
     for folders in os.listdir(dir):
         tf = os.path.join(dir, folders)
-        print
-        tf
+        print tf
         if os.path.isdir(tf):
             data_file_status.append(int(folders))
 
@@ -42,14 +41,12 @@ def CleanTemp():
     files = os.listdir(Dir)
 
     for fs in files:
-        print
-        fs
+        print fs
         tfile = os.path.join(Dir, fs)
         if os.path.isfile(tfile):
             os.remove(tfile)
         else:
-            print
-            "delete file error."
+            print "delete file error."
     else:
         print 'clear done.'
 

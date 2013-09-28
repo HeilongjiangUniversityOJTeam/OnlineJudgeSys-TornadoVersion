@@ -43,10 +43,8 @@ class MongoScannerThreading(threading.Thread):
 
     def run(self):
         while True:
-            print
-            'scanner start...',
-            print
-            time.strftime("%Y-%m-%d %A %X", time.localtime())
+            print 'scanner start...',
+            print time.strftime("%Y-%m-%d %A %X", time.localtime())
             self.scanner()
             time.sleep(self.period)
 
@@ -70,23 +68,20 @@ class ResultListenerThreading(threading.Thread):
 
             request = self.mongo_db.judge_queues.find_one({'_id': res['_id']})
             if not request:
-                print
-                'result id error,do not exist id %d.' % res['_id']
+                print 'result id error,do not exist id %d.' % res['_id']
                 continue
             del res['_id']
             request['result'] = res
 
             problem = self.mongo_db.problems.find_one({'_id': request['problem_id']})
             if not problem:
-                print
-                'problem not found.'
+                print 'problem not found.'
                 continue
             problem['info'][res['type']] += 1
 
             user = self.mongo_db.users.find_one({'user_name': request['user_name']})
             if not user:
-                print
-                'user find err'
+                print 'user find err'
                 continue
             user['info'][res['type']] += 1
             if res['type'] == 'Yes':
