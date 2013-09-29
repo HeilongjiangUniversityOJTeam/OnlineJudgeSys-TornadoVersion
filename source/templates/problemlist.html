@@ -14,7 +14,7 @@
 	<tr>
 		{% if id['use_able'] == 'on' %}
 				<td><center><a href="/problem/{{ id['_id'] }}">{{ id['_id'] }}</a></center></td>
-				<td><a href="/problem/{{ id['_id'] }}">{{ id['title'] }}</a></td>
+				<td><center><a href="/problem/{{ id['_id'] }}">{{ id['title'] }}</a></center></td>
 				<td><center>
 					{% if id['info']['total'] %}
 						{{ "%0.2f"%(id['info']['Yes']/float(id['info']['total'])) }}
@@ -27,6 +27,5 @@
 	</tr>
 	{% end %}
 	</table>
-	
-	
+
 {% end %}

@@ -1,8 +1,7 @@
 import tornado.auth
 import tornado.web
 import tornado.escape
-import pymongo
-from unit.util import coding, uncoding
+from lib.util import coding, uncoding
 
 
 class BaseHandler(tornado.web.RequestHandler):

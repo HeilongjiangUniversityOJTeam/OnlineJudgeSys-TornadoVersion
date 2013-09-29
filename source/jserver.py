@@ -43,8 +43,8 @@ class MongoScannerThreading(threading.Thread):
 
     def run(self):
         while True:
-            print 'scanner start...',
-            print time.strftime("%Y-%m-%d %A %X", time.localtime())
+            #print 'scanner start...',
+            #print time.strftime("%Y-%m-%d %A %X", time.localtime())
             self.scanner()
             time.sleep(self.period)
 

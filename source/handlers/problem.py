@@ -3,7 +3,9 @@ import tornado.httpserver
 import tornado.web
 import time
 import json
+
 from jserver import AddRequest
+from lib.util import FilesWriter
 
 
 class BaseHandler(tornado.web.RequestHandler):
@@ -62,10 +64,7 @@ class SubmitProblemHandler(BaseHandler):
             return
 
         file_name = "./judger/SourceCode/%d.%s" % (new_post['_id'], file_type)
-
-        fin = open(file_name, 'w')
-        fin.write(submit_file['body'])
-        fin.close()
+        FilesWriter(file_name, submit_file['body'])
 
         new_post['code_file'] = file_name
 

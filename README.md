@@ -19,6 +19,24 @@ judger目录下main.py
             pip pymongo
             git Lo-runner python install
 
+09.29 icefish
+-----
+        * 重构整个工程代码结构
+            ---root---
+                所有的url响应链接放在urls.py
+                setting.py存放网站相关settings
+            ---lib---
+                将一些公共代码统一放在lib目录下,util.py编写项目公共组件
+                lib目录下接口将对一些较底层的接口进行封装
+            ---models---
+                将所有数据模型定义为类,存放在models目录下
+                规则为每个文件类名和文件名一致,一个文件存放一个数据类型
+                (如果一个数据类型需要依赖别的一些子类型,在统一目录下定义)
+                数据模型架构规则类似java
+                数据模型文件定义统一为 m_XXX.py, XXX代表模型全拼复数形式
+            ---handlers---
+                所有网站响应Handlers目录,一个类型相关的handlers放在对应文件下
+
 09.28 icefish
 -----
         * 项目添加log功能,log记录在log目录下judge.log中
