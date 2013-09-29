@@ -2,6 +2,8 @@ OnlineJudgeSys (Tornado Version)
 ====
 运行根目录下gaea.py jserver.py
 judger目录下main.py
+
+环境配置说明
 -----
         * 开发环境
             Ubuntu 12.04 & 13.04
@@ -21,6 +23,7 @@ judger目录下main.py
 
 09.29 icefish
 -----
+        * 补充之前遗漏的文件
         * 重构整个工程代码结构
             ---root---
                 所有的url响应链接放在urls.py
@@ -29,6 +32,7 @@ judger目录下main.py
                 将一些公共代码统一放在lib目录下,util.py编写项目公共组件
                 lib目录下接口将对一些较底层的接口进行封装
             ---models---
+                !!!数据库models文件暂时不能用，还需要调整!!!
                 将所有数据模型定义为类,存放在models目录下
                 规则为每个文件类名和文件名一致,一个文件存放一个数据类型
                 (如果一个数据类型需要依赖别的一些子类型,在统一目录下定义)
