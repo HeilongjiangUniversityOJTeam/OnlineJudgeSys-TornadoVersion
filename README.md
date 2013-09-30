@@ -21,6 +21,11 @@ judger目录下main.py
             pip pymongo
             git Lo-runner python install
 
+09.30 icefish
+-----
+        * 添加遗漏的lib目录
+        * 清除一些无用文件为之后数据库的重构做准备
+
 09.29 icefish
 -----
         * 补充之前遗漏的文件
@@ -34,10 +39,7 @@ judger目录下main.py
             ---models---
                 !!!数据库models文件暂时不能用，还需要调整!!!
                 将所有数据模型定义为类,存放在models目录下
-                规则为每个文件类名和文件名一致,一个文件存放一个数据类型
                 (如果一个数据类型需要依赖别的一些子类型,在统一目录下定义)
-                数据模型架构规则类似java
-                数据模型文件定义统一为 m_XXX.py, XXX代表模型全拼复数形式
             ---handlers---
                 所有网站响应Handlers目录,一个类型相关的handlers放在对应文件下
 

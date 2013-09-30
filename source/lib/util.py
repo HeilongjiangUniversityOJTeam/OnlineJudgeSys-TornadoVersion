@@ -19,12 +19,3 @@ def uncoding(source):
 def FilesWriter(file_name, words):
     with open(file_name,"w") as file:
         file.write(words)
-
-
-def MongoFileWriter(file):
-
-    return
-
-def MongoBytesFileWriter(bytes):
-
-    return
